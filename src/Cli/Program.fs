@@ -9,6 +9,7 @@ type InputActions =
     | SelectItem
     | Escape
     | TypeText of string
+    | RemoveText
     | Nothing
 
 let waitForAction () =
@@ -19,6 +20,7 @@ let waitForAction () =
     | ConsoleKey.DownArrow -> MoveDown
     | ConsoleKey.Enter -> SelectItem
     | ConsoleKey.Escape -> Escape
+    | ConsoleKey.Backspace -> RemoveText
     | k when int k >= 65 && int k <= 90 -> TypeText(k.ToString().ToLower())
     | _ -> Nothing
 
@@ -78,6 +80,7 @@ let main argv =
                 | MoveUp -> moveUp menu
                 | MoveDown -> moveDown menu
                 | TypeText text -> appendFilter menu text
+                | RemoveText -> popFilter menu
                 | Escape ->
                     running <- false
                     menu
@@ -100,6 +103,7 @@ let main argv =
                 | MoveUp -> moveUp menu
                 | MoveDown -> moveDown menu
                 | TypeText text -> menu
+                | RemoveText -> menu
                 | Escape ->
                     screen <- ViewLogGroups
                     createMenu logGroupNames
