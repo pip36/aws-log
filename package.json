@@ -1,0 +1,9 @@
+{
+  "name": "awslog",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "dotnet run -p src/Cli/Cli.fsproj",
+    "test": "dotnet watch test -p test/LogicTests/LogicTests.fsproj"
+  }
+}
